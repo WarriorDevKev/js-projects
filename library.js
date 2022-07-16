@@ -5,40 +5,42 @@ class Media {
     this._ratings = [];
   }
   // getters
-  get title(){
+  get title() {
     return this._title;
   }
   get isCheckedOut() {
     return this._isCheckedOut;
   }
+  get ratings() {
+    return this._ratings;
+  }
+
   // isCheckout setter
   set isCheckedOut(value) {
     this._isCheckedOut = value;
-  }
-  get ratings(){
-    return this._ratings;
   }
   
   // method to negate the value saved to a boolean.
   toggleCheckOutStatus() {
     this.isCheckedOut = !this.isCheckedOut;
   }
+
   // return reduced ratings result 
   getAverageRating() {
     let ratingsSum = this.ratings.reduce((currentSum, rating) => currentSum + rating, 0);
-    return ratingsSum / this._ratings.length;  
+    return ratingsSum / this.ratings.length;  
     }
 
   // add rating method
-  addRating(input) {
-    this.ratings.push(input);
+  addRating(value) {
+    this.ratings.push(value);
   }
 } // ***** MEDIA CLASS END *****
 
 // ***** Book Class extends Media *****
 class Book extends Media {
   constructor(author, title, pages) {
-    super (title)
+    super(title);
     this._author = author;
     this._pages = pages;
   }
@@ -51,23 +53,10 @@ class Book extends Media {
   }
 } // ***** BOOK CLASS END *****
   
-  // Created BOOK instance with unique properties
-  const historyOfEverything = new Book('Bill Bryson', 'A Short History of Nearly Everything', 544);
-
-  // Call toggleCheckOut on BOOK instance
-  historyOfEverything.toggleCheckOutStatus();
-
-  // log the saved value
-  console.log(historyOfEverything.isCheckedOut);
-  
-  // invoke addRating on HistoryofEverything then log to console
-  historyOfEverything.addRating(4); historyOfEverything.addRating(5); historyOfEverything.addRating(5);
-  console.log(historyOfEverything.getAverageRating());
-
   // ***** MOVIE Class extends Media *****
   class Movie extends Media {
   constructor(director, title, runTime) {
-    super (title)
+    super(title);
     this._director = director;
     this._runTime = runTime;
   }
@@ -81,8 +70,21 @@ class Book extends Media {
   
 } // ***** MOVIE CLASS END *****
 
+  // Created BOOK instance with unique properties
+  const historyOfEverything = new Book('Bill Bryson', 'A Short History of Nearly Everything', 544);
+
+  // Call toggleCheckOut on BOOK instance
+  historyOfEverything.toggleCheckOutStatus();
+
+  // log the saved value
+  console.log(historyOfEverything.isCheckedOut);
+  
+  // invoke addRating on HistoryofEverything then log to console
+  historyOfEverything.addRating(4); historyOfEverything.addRating(5); historyOfEverything.addRating(5);
+  console.log(historyOfEverything.getAverageRating());
+
   // Created MOVIE instance with unique properties
-  const speed = new Movie('Jan de Bont', 'Speed', 16);
+  const speed = new Movie('Jan de Bont', 'Speed', 116);
   // Call toggleCheckOut on SPEED instance
   speed.toggleCheckOutStatus();
 
